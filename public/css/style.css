@@ -40,3 +40,11 @@ body {
 .shuffledWord{
 	font-size: 25px;
 }
+
+.highlighted-green{
+	color: green;
+}
+
+.highlighted-red{
+	color: red;
+}

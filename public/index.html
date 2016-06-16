@@ -10,26 +10,27 @@
 	<title>Word Game</title>
 
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-
 	<link rel="stylesheet" href="css/style.css">
 
 
+	<!-- SPELLS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script><!-- load angular -->
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script> <!-- load jquery -->
-	<script src="js/controllers/main.js"></script> <!-- load the controller -->
-	<script src="js/services/users.js"></script> <!-- load user service -->
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
+	
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/users.js"></script> <!-- load users service -->
 	<script src="js/services/randomword.js"></script> <!-- load randomword service -->
-	<script src="js/core.js"></script> <!-- load main application -->
+	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
 <!-- SET THE CONTROLLER -->
-<body ng-controller="mainController">
+<body ng-controller="mainController as c">
 	
 	<div class="container">
 
-		<div class="jumbotron">
-			<h1>Word Game</h1>
-		</div>
+	  <div class="jumbotron">
+	    <h1>Word Game</h1>
+	  </div>
 
 		<!-- FORM TO CREATE USER -->
 		<div id="user-form" class="row">
@@ -41,7 +42,7 @@
 						<input type="text" class="form-control input-lg text-center" placeholder="Say your name" ng-model="formUserData.name">
 					</div>
 
-					<!-- createUser() WILL CREATE NEW USERS -->
+					<!-- createUser() WILL CREATE NEW TODOS -->
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Create user</button>
 				</form>
 			</div>
@@ -62,17 +63,19 @@
 					</p>
 				</label>
 			</div>
+			
+
 		</div>
 
+		
 
 
-		<!-- FORM TO CHECK WORDS -->
+		<!-- FORM TO CREATE TODOS -->
 		<div id="game-container" class="row" ng-hide="!user.name">
 
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 
 				Hello <span class="hello-user">{{user.name}} ({{user.score}})</span>, you can start playing...
-
 
 				<form class="game-form">
 
@@ -95,15 +98,11 @@
 				<div class="alert alert-danger fade in" ng-show="error">
 				  <strong>Error!</strong> Word is not correct
 				</div>
-				
 
 
 
 			</div>
-		</div>		
-
-
-
+		</div>
 
 
 	</div>

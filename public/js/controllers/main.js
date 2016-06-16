@@ -4,8 +4,7 @@ angular.module('userController', [])
 	.controller('mainController', ['$scope','$http','Users', 'Randomword', function($scope, $http, Users, Randomword) {
 		$scope.formData = {};
 		$scope.loading = true;
-
-
+		$scope.error = false;
 
 		// GET =====================================================================
 		// when landing on the page, get all users and show them
@@ -16,6 +15,9 @@ angular.module('userController', [])
 				$scope.loading = false;
 			});
 
+
+
+
 		// provides random words
 		Randomword.getRandomWord()
 			.success(function(data) {
@@ -25,6 +27,7 @@ angular.module('userController', [])
 				console.log('correctWord: ' + $scope.correctWord);
 				console.log('shuffledWord:' + $scope.shuffledWord);
 			});
+
 
 
 		// CREATE ==================================================================
@@ -80,6 +83,83 @@ angular.module('userController', [])
 		};
 
 
+
+		$scope.checkWord = function(){
+
+			if ($scope.formData.word != undefined) {
+				console.log($scope.formData.proposed);
+				console.log($scope.formData.word);
+
+				if ($scope.formData.word == $scope.correctWord){
+			
+					$scope.user.score += calculatePoints();
+
+					Users.update($scope.user)
+						.success(function(data) {
+							$scope.loading = false;
+							$scope.formData = {}; // clear the form so our user is ready to enter another
+							$scope.users = data; // assign our new list of users
+							$scope.error = false;
+
+							$('.hello-user').addClass('highlighted-green');
+							    setTimeout(function(){
+							      $('.hello-user').removeClass('highlighted-green');
+							  	}, 2000);							
+
+							showNextWord();
+						});
+
+
+				}
+				else{
+					$scope.error = true;
+				}
+
+			}
+
+		};
+
+
+		$scope.nextWord = function(){
+			showNextWord();
+		};
+
+
+
+		// -1 point for every character deleted.
+		$scope.removePointOnBackspace = function (event) {
+		    if (event.keyCode === 8 && $scope.user.score > 0) {
+		    	$scope.user.score -= 1;
+				$('.hello-user').addClass('highlighted-red');
+				    setTimeout(function(){
+				      $('.hello-user').removeClass('highlighted-red');
+				  	}, 1000);		    	
+		    }
+		};		
+
+
+
+
+
+		//
+		// Other functions
+		//
+
+		calculatePoints = function(){
+
+			var max_score = 0;
+
+			// n = number	of	characters	in	the	word,
+			var n = $scope.formData.word.length;
+			max_score = Math.floor(Math.pow(1.95, n/3));
+	
+			console.log(max_score);
+			return max_score;
+
+		};
+
+
+
 		shuffleWord = function(word){
 		    var a = word.split(''),
 		        n = a.length;
@@ -94,6 +174,21 @@ angular.module('userController', [])
 			
 
 		};
+
+
+
+		showNextWord = function(){
+			// provides random words
+			Randomword.getRandomWord()
+				.success(function(data) {
+					$scope.correctWord = data;
+					$scope.shuffledWord = shuffleWord(data);
+
+					console.log('correctWord: ' + $scope.correctWord);
+					console.log('shuffledWord:' + $scope.shuffledWord);
+				});
+		};
+
 
 
 

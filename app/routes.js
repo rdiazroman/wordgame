@@ -7,7 +7,6 @@ function getUsers(res) {
         if (err) {
             res.send(err);
         }
-
         res.json(users); // return all users in JSON format
     });
 }
@@ -41,6 +40,33 @@ module.exports = function (app) {
     });
 
 
+    //updates the score of a user
+    app.put('/api/users/:user_id', function (req, res) {
+
+        console.info(' ');
+        console.info(' ');
+        console.info('REQUEST:');
+        console.info(req.body._id);
+        console.info(req.body.name);
+        console.info(req.body.score);
+        console.info(' ');
+        console.info(' ');
+
+         User.update({
+            name: req.body.name,
+            score: req.body.score,
+            done: true
+        }, function (err, user) {
+            if (err)
+                res.send(err);
+
+            // get and return all the users after you create another
+            getUsers(res);
+        });       
+
+    });
+
+
     //get user by id
     app.get('/api/users/:user_id', function (req, res) {
 
@@ -70,6 +96,7 @@ module.exports = function (app) {
     });
 
 
+
     // returns a random word from a list
     app.get('/api/randomword', function (req, res) {
         // 10 words
@@ -79,10 +106,11 @@ module.exports = function (app) {
 
     });
 
+
+
     getRandomInt = function(min, max){
         return Math.floor(Math.random() * (max - min)) + min;
     };
-
 
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
