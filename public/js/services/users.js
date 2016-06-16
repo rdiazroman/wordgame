@@ -7,6 +7,9 @@ angular.module('userService', [])
 			get : function() {
 				return $http.get('/api/users');
 			},
+			getById: function(id){
+				return $http.get('/api/users/' + id);
+			},			
 			create : function(userData) {
 				return $http.post('/api/users', userData);
 			},

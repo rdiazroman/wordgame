@@ -49,6 +49,23 @@ angular.module('userController', [])
 		};
 
 
+		// SELECT ==================================================================
+		// select the user who wants to play
+		$scope.selectUser = function(id) {
+
+			console.log(id);
+
+			Users.getById(id)
+				.success(function(data) {
+					$scope.user = data;
+					$scope.loading = false;
+				});
+
+
+		};	
+
+
+
 		// DELETE ==================================================================
 		// delete a user after checking it
 		$scope.deleteUser = function(id) {

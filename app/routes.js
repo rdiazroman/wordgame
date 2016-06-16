@@ -41,6 +41,21 @@ module.exports = function (app) {
     });
 
 
+    //get user by id
+    app.get('/api/users/:user_id', function (req, res) {
+
+        User.findById({
+            _id: req.params.user_id
+        }, function (err, user) {
+            if (err)
+                res.send(err);
+
+            res.send(user);
+        });
+
+    });
+
+
     // delete an user
     app.delete('/api/users/:user_id', function (req, res) {
 

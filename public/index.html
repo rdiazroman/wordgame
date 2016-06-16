@@ -56,17 +56,31 @@
 			<div ng-repeat="user in users">
 				<label>
 					<p> 
-						<input type="radio" name="radio-user"  /> 
+						<input type="radio" name="radio-user"  ng-click="selectUser(user._id)" /> 
 						{{ user.name }}  ({{ user.score }} points)  
 						<a href="" class="remove-user" ng-click="deleteUser(user._id)" >x</a>  
 					</p>
 				</label>
 			</div>
-			
-
 		</div>
 
-		
+
+
+		<!-- FORM TO CHECK WORDS -->
+		<div id="game-container" class="row" ng-hide="!user.name">
+
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+
+				Hello <span class="hello-user">{{user.name}} ({{user.score}})</span>, you can start playing...
+
+
+
+				
+
+
+
+			</div>
+		</div>		
 
 
 
