@@ -1,0 +1,32 @@
+html { 
+	overflow-y:scroll;
+	font-size: 13px; 
+}
+
+body { 
+	padding-top:50px; 
+	
+}
+
+.user-list{
+	float: left;
+}
+
+#todo-list{ 
+	margin-bottom:30px; 
+
+}
+
+#game-container{ 
+	margin-bottom:50px; 
+	float:left;
+	width: 800px;
+}
+
+.remove-user{
+	cursor:pointer		
+}
+
+.game-form{
+	margin-top: 50px;
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="rubenWordgame">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Word Game</title>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+
+	<link rel="stylesheet" href="css/style.css">
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script><!-- load angular -->
+
+	<script src="js/controllers/main.js"></script> <!-- load the controller -->
+	<script src="js/services/users.js"></script> <!-- load user service -->
+	<script src="js/core.js"></script> <!-- load main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	
+	<div class="container">
+
+		<!-- FORM TO CREATE USER -->
+		<div id="user-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="Say your name" ng-model="formUserData.name">
+					</div>
+
+					<!-- createUser() -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Create user</button>
+				</form>
+			</div>
+		</div>
+
+		<br /><br /><br />
+
+		<!-- USERS LIST -->
+		<div class="user-list jumbotron text-left">
+			<h3>Users: <span class="label label-info">{{ users.length }}</span></h3>
+
+			<div ng-repeat="user in users">
+				<label>
+					<p> 
+						<input type="radio" name="radio-user"  /> 
+
+						{{ user.name }}  ({{ user.score }} points)  
+
+					</p>
+				</label>
+			</div>
+			
+
+		</div>
+
+		
+
+
+
+
+
+	</div>
+
+</body>
+</html>
