@@ -43,7 +43,7 @@
 					</div>
 
 					<!-- createUser() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Create user</button>
+					<button type="submit" class="btn btn-primary btn-l" ng-click="createUser()">Create user</button>
 				</form>
 			</div>
 		</div>
@@ -90,7 +90,9 @@
 						<b>{{shuffledWord}}</b>
 					</label>
 					<div class="form-group">
-						<input type="text" class="form-control input-lg text-center" placeholder="Solution here..." ng-model="formData.word" ng-disabled="!countdownActive" ng-keydown="removePointOnBackspace($event)">
+						<input type="text" class="form-control input-lg text-center" placeholder="Solution here..." ng-model="formData.word" x ng-keydown="removePointOnBackspace($event)">
+
+						<!-- Can't set headers after they are sent. -->
 					</div>
 
 					<button type="submit" class="btn btn-primary btn-g" ng-click="checkWord(user)">Check</button>

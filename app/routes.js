@@ -7,6 +7,12 @@ function getUsers(res) {
         if (err) {
             res.send(err);
         }
+
+
+        console.log('  ');
+        console.log(' users: ');
+        console.log(users);
+
         res.json(users); // return all users in JSON format
     });
 }
@@ -53,12 +59,14 @@ module.exports = function (app) {
         console.info(' ');
 
          User.update({
+            _id: req.body._id,
             name: req.body.name,
             score: req.body.score,
-            done: true
+            done: false
         }, function (err, user) {
-            if (err)
+            if (err){
                 res.send(err);
+            }
 
             // get and return all the users after you create another
             getUsers(res);

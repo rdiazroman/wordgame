@@ -25,9 +25,6 @@ angular.module('userController', [])
 			.success(function(data) {
 				$scope.correctWord = data;
 				$scope.shuffledWord = shuffleWord(data);
-
-				console.log('correctWord: ' + $scope.correctWord);
-				console.log('shuffledWord:' + $scope.shuffledWord);
 			});
 
 
@@ -64,6 +61,7 @@ angular.module('userController', [])
 				.success(function(data) {
 					$scope.user = data;
 					$scope.loading = false;
+					//$scope.$apply();
 				});
 
 
@@ -89,8 +87,6 @@ angular.module('userController', [])
 		$scope.checkWord = function(){
 
 			if ($scope.formData.word != undefined) {
-				console.log($scope.formData.proposed);
-				console.log($scope.formData.word);
 
 				if ($scope.formData.word == $scope.correctWord){
 			
