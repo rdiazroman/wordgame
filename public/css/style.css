@@ -24,8 +24,10 @@ body {
 }
 
 .remove-user{
-	cursor:pointer		
+	cursor:pointer;
+	color:red;		
 }
+t
 
 .game-form{
 	margin-top: 50px;

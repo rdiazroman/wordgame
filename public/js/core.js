@@ -1,1 +1,1 @@
-angular.module('rubenWordgame', ['userController', 'userService']);
+angular.module('rubenWordgame', ['userController', 'userService', 'randomwordService']);

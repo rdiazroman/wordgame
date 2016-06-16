@@ -41,6 +41,32 @@ module.exports = function (app) {
     });
 
 
+    // delete an user
+    app.delete('/api/users/:user_id', function (req, res) {
+
+        User.remove({
+            _id: req.params.user_id
+        }, function (err, user) {
+            if (err)
+                res.send(err);
+
+            getUsers(res);
+        });
+    });
+
+
+    // returns a random word from a list
+    app.get('/api/randomword', function (req, res) {
+        // 10 words
+        var words = ['pizza', 'java', 'music', 'spain', 'zurich', 'program', 'classic', 'sky', 'javascript', 'angular'];
+        var i = getRandomInt(0,9);
+        res.send(words[i]);
+
+    });
+
+    getRandomInt = function(min, max){
+        return Math.floor(Math.random() * (max - min)) + min;
+    };
 
 
     // application -------------------------------------------------------------

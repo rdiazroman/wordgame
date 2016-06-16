@@ -18,6 +18,7 @@
 
 	<script src="js/controllers/main.js"></script> <!-- load the controller -->
 	<script src="js/services/users.js"></script> <!-- load user service -->
+	<script src="js/services/randomword.js"></script> <!-- load randomword service -->
 	<script src="js/core.js"></script> <!-- load main application -->
 
 </head>
@@ -25,6 +26,10 @@
 <body ng-controller="mainController">
 	
 	<div class="container">
+
+		<div class="jumbotron">
+			<h1>Word Game</h1>
+		</div>
 
 		<!-- FORM TO CREATE USER -->
 		<div id="user-form" class="row">
@@ -36,7 +41,7 @@
 						<input type="text" class="form-control input-lg text-center" placeholder="Say your name" ng-model="formUserData.name">
 					</div>
 
-					<!-- createUser() -->
+					<!-- createUser() WILL CREATE NEW USERS -->
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Create user</button>
 				</form>
 			</div>
@@ -52,9 +57,8 @@
 				<label>
 					<p> 
 						<input type="radio" name="radio-user"  /> 
-
 						{{ user.name }}  ({{ user.score }} points)  
-
+						<a href="" class="remove-user" ng-click="deleteUser(user._id)" >x</a>  
 					</p>
 				</label>
 			</div>

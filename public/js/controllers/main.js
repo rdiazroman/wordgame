@@ -1,7 +1,7 @@
 angular.module('userController', [])
 
 	// inject the User service factory into our controller
-	.controller('mainController', ['$scope','$http','Users', function($scope, $http, Users) {
+	.controller('mainController', ['$scope','$http','Users', 'Randomword', function($scope, $http, Users, Randomword) {
 		$scope.formData = {};
 		$scope.loading = true;
 
@@ -15,6 +15,17 @@ angular.module('userController', [])
 				$scope.users = data;
 				$scope.loading = false;
 			});
+
+		// provides random words
+		Randomword.getRandomWord()
+			.success(function(data) {
+				$scope.correctWord = data;
+				$scope.shuffledWord = shuffleWord(data);
+
+				console.log('correctWord: ' + $scope.correctWord);
+				console.log('shuffledWord:' + $scope.shuffledWord);
+			});
+
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
@@ -37,6 +48,35 @@ angular.module('userController', [])
 			}
 		};
 
+
+		// DELETE ==================================================================
+		// delete a user after checking it
+		$scope.deleteUser = function(id) {
+			$scope.loading = true;
+
+			Users.delete(id)
+				// if successful creation, call our get function to get all the new users
+				.success(function(data) {
+					$scope.loading = false;
+					$scope.users = data; // assign our new list of users
+				});
+		};
+
+
+		shuffleWord = function(word){
+		    var a = word.split(''),
+		        n = a.length;
+
+		    for(var i = n - 1; i > 0; i--) {
+		        var j = Math.floor(Math.random() * (i + 1));
+		        var tmp = a[i];
+		        a[i] = a[j];
+		        a[j] = tmp;
+		    }
+		    return a.join('');
+			
+
+		};
 
 
 
