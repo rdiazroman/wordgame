@@ -27,8 +27,16 @@ body {
 	cursor:pointer;
 	color:red;		
 }
-t
 
 .game-form{
 	margin-top: 50px;
+}
+
+.hello-user{
+	 font-weight: bold;
+	 font-size: 14px;
+}
+
+.shuffledWord{
+	font-size: 25px;
 }

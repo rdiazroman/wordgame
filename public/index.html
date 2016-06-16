@@ -74,7 +74,27 @@
 				Hello <span class="hello-user">{{user.name}} ({{user.score}})</span>, you can start playing...
 
 
+				<form class="game-form">
 
+					<input type="hidden" ng-value="{{gamewordskeys[0].value}}" ng-model="formData.proposed" /> 
+
+					<label class="shuffledWord"> 
+						<b>{{shuffledWord}}</b>
+					</label>
+					<div class="form-group">
+						<input type="text" class="form-control input-lg text-center" placeholder="Solution here..." ng-model="formData.word" ng-keydown="removePointOnBackspace($event)">
+					</div>
+
+					<button type="submit" class="btn btn-primary btn-g" ng-click="checkWord(user)">Check</button>
+					<button type="submit" class="btn btn-link btn-g" ng-click="nextWord(user)">Next</button>
+	
+				</form>
+
+				<br /><br />
+
+				<div class="alert alert-danger fade in" ng-show="error">
+				  <strong>Error!</strong> Word is not correct
+				</div>
 				
 
 
