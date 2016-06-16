@@ -5,6 +5,8 @@ angular.module('userController', [])
 		$scope.formData = {};
 		$scope.loading = true;
 		$scope.error = false;
+		$scope.countdown = 40;
+		$scope.countdownActive = false;
 
 		// GET =====================================================================
 		// when landing on the page, get all users and show them
@@ -93,11 +95,12 @@ angular.module('userController', [])
 				if ($scope.formData.word == $scope.correctWord){
 			
 					$scope.user.score += calculatePoints();
+					$scope.formData.word = "";
 
 					Users.update($scope.user)
 						.success(function(data) {
 							$scope.loading = false;
-							$scope.formData = {}; // clear the form so our user is ready to enter another
+							
 							$scope.users = data; // assign our new list of users
 							$scope.error = false;
 
@@ -188,6 +191,31 @@ angular.module('userController', [])
 					console.log('shuffledWord:' + $scope.shuffledWord);
 				});
 		};
+
+
+
+	    
+	    $scope.startCountdown = function(){
+
+	    	$scope.countdown = 40;
+	    	$scope.countdownActive = true;
+	    	$('.countdown').removeClass('highlighted-red');
+
+			var interval = setInterval(function() {
+			    $scope.countdown--;
+			    console.log($scope.countdown);
+			    $scope.$apply();
+
+			    if ($scope.countdown == 0) {
+			    	$scope.countdownActive = false;
+			    	$('.countdown').addClass('highlighted-red');
+			        clearInterval(interval);
+			    }
+			}, 1000);
+	    };
+
+
+	
 
 
 

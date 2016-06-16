@@ -8,8 +8,24 @@ body {
 	
 }
 
+.header{
+	height: 130px;
+	padding-top: 0px;
+}
+
+.header h1{
+	padding-top: 15px;
+}
+
 .user-list{
 	float: left;
+}
+
+.new-user-box{
+	width: 350px;
+    float: right;
+    margin-top: -150px;
+    margin-right: 0px;
 }
 
 #todo-list{ 
@@ -48,3 +64,13 @@ body {
 .highlighted-red{
 	color: red;
 }
+
+.start-button{
+
+ }
+
+ .countdown{
+ 	font-weight: bold;
+ 	font-size: 30px;
+ 	margin-left:10px;
+ }

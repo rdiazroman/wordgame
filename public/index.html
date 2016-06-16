@@ -16,7 +16,7 @@
 	<!-- SPELLS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script><!-- load angular -->
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
-	
+
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/users.js"></script> <!-- load users service -->
 	<script src="js/services/randomword.js"></script> <!-- load randomword service -->
@@ -28,13 +28,13 @@
 	
 	<div class="container">
 
-	  <div class="jumbotron">
-	    <h1>Word Game</h1>
-	  </div>
+	  	<div class="jumbotron header">
+	   		<h1>Word Game </h1>
+	  	</div>
 
 		<!-- FORM TO CREATE USER -->
-		<div id="user-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
+		<div id="user-form " class="row new-user-box">
+			<div class="col-sm-8 col-sm-offset-2 text-center  ">
 				<form>
 					<div class="form-group">
 
@@ -63,14 +63,21 @@
 					</p>
 				</label>
 			</div>
-			
+
+			<div class="start-button">
+				<button type="submit" class="btn btn-success btn-lg" ng-click="startCountdown()">Start!</button>
+				<span class="countdown">{{countdown}} sec</span>
+			</div>	
+
 
 		</div>
 
-		
 
 
-		<!-- FORM TO CREATE TODOS -->
+
+
+
+		<!-- WORD CHECK -->
 		<div id="game-container" class="row" ng-hide="!user.name">
 
 			<div class="col-sm-8 col-sm-offset-2 text-center">
@@ -79,18 +86,16 @@
 
 				<form class="game-form">
 
-					<input type="hidden" ng-value="{{gamewordskeys[0].value}}" ng-model="formData.proposed" /> 
-
 					<label class="shuffledWord"> 
 						<b>{{shuffledWord}}</b>
 					</label>
 					<div class="form-group">
-						<input type="text" class="form-control input-lg text-center" placeholder="Solution here..." ng-model="formData.word" ng-keydown="removePointOnBackspace($event)">
+						<input type="text" class="form-control input-lg text-center" placeholder="Solution here..." ng-model="formData.word" ng-disabled="!countdownActive" ng-keydown="removePointOnBackspace($event)">
 					</div>
 
 					<button type="submit" class="btn btn-primary btn-g" ng-click="checkWord(user)">Check</button>
 					<button type="submit" class="btn btn-link btn-g" ng-click="nextWord(user)">Next</button>
-	
+
 				</form>
 
 				<br /><br />

@@ -16,7 +16,7 @@ Small word puzzle game that	presents the user with a mangled word and asks her t
 
 
 ```sh
-$ https://github.com/rdiazroman/wordgame.git
+$ git clone https://github.com/rdiazroman/wordgame.git
 $ cd wordgame
 $ npm install
 $ node server.js
