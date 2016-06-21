@@ -20,6 +20,9 @@ $ git clone https://github.com/rdiazroman/wordgame.git
 $ cd wordgame
 $ npm install
 $ node server.js
+
+http://localhost:8080/
+
 ```
 
 
