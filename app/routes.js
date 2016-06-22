@@ -8,12 +8,8 @@ function getUsers(res) {
             res.send(err);
         }
 
-
-        console.log('  ');
-        console.log(' users: ');
-        console.log(users);
-
-        res.json(users); // return all users in JSON format
+        res.json(users); // return all users in JSON format    
+       
     });
 }
 ;
@@ -46,35 +42,6 @@ module.exports = function (app) {
     });
 
 
-    //updates the score of a user
-    app.put('/api/users/:user_id', function (req, res) {
-
-        console.info(' ');
-        console.info(' ');
-        console.info('REQUEST:');
-        console.info(req.body._id);
-        console.info(req.body.name);
-        console.info(req.body.score);
-        console.info(' ');
-        console.info(' ');
-
-         User.update({
-            _id: req.body._id,
-            name: req.body.name,
-            score: req.body.score,
-            done: false
-        }, function (err, user) {
-            if (err){
-                res.send(err);
-            }
-
-            // get and return all the users after you create another
-            getUsers(res);
-        });       
-
-    });
-
-
     //get user by id
     app.get('/api/users/:user_id', function (req, res) {
 
@@ -102,6 +69,23 @@ module.exports = function (app) {
             getUsers(res);
         });
     });
+
+
+
+    //updates the score of a user
+    app.put('/api/users/:user_id', function (req, res) {
+
+        User.update(
+            {_id:req.body._id}, 
+            {$set:{score:req.body.score}}, 
+            function(err, user) {
+                if (err){
+                    res.send(err);
+                }
+                // get and return all the users
+                getUsers(res);
+        });
+    });    
 
 
 
