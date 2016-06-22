@@ -54,17 +54,12 @@ angular.module('userController', [])
 		// SELECT ==================================================================
 		// select the user who wants to play
 		$scope.selectUser = function(id) {
-
-			console.log(id);
-
 			Users.getById(id)
 				.success(function(data) {
 					$scope.user = data;
 					$scope.loading = false;
 					//$scope.$apply();
 				});
-
-
 		};	
 
 
@@ -151,8 +146,7 @@ angular.module('userController', [])
 			// n = number	of	characters	in	the	word,
 			var n = $scope.formData.word.length;
 			max_score = Math.floor(Math.pow(1.95, n/3));
-	
-			console.log(max_score);
+
 			return max_score;
 
 		};
@@ -183,8 +177,6 @@ angular.module('userController', [])
 					$scope.correctWord = data;
 					$scope.shuffledWord = shuffleWord(data);
 
-					console.log('correctWord: ' + $scope.correctWord);
-					console.log('shuffledWord:' + $scope.shuffledWord);
 				});
 		};
 
@@ -199,7 +191,7 @@ angular.module('userController', [])
 
 			var interval = setInterval(function() {
 			    $scope.countdown--;
-			    console.log($scope.countdown);
+
 			    $scope.$apply();
 
 			    if ($scope.countdown == 0) {
